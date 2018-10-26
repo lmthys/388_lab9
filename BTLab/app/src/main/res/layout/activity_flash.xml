@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_flash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.FlashActivity">
+
+
+    <Button
+        android:id="@+id/senderToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="beSender"
+        android:text="@string/button_stop_sensor" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:id="@+id/flashMessage"/>
+
+
+    <EditText
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_input"
+        android:inputType="text" />
+
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendWithFlashes"
+        android:text="@string/button_send_flash" />
+
+    <TextView
+        android:id="@+id/valueTesting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="80sp"
+        android:textSize="25sp"
+        tools:text="TextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="bottom"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/color1Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="showRed"
+            android:text="@string/button_red"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/color2Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="showBlack"
+            android:text="@string/button_black"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/color3Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="showWhite"
+            android:text="@string/button_white"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
+</LinearLayout>
