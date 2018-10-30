@@ -79,18 +79,18 @@ public class FlashModel implements SensorEventListener {
 
             //check to see if the sensed light value is a certain color
             // - if its red, then use the callback with update("RED") and set the messageHasStarted accordingly
-            if((event.values[0] > 10 && event.values[0] < 30 )&& prevLightValue != RED){
+            if((event.values[0] > 20 && event.values[0] < 30 )&& prevLightValue != RED){
                 mCallback.update("RED");
                 messageHasStarted = true;
                 prevLightValue = RED;
             }
             // - if its white, then use the callback with update("WHITE")
-            if((event.values[0] > 0 && event.values[0] < 10 ) && prevLightValue != WHITE){
+            if((event.values[0] > -1 && event.values[0] < 2 ) && prevLightValue != WHITE){
                 mCallback.update("WHITE");
                 prevLightValue = WHITE;
             }
             // - if its black, then use the callback with update("BLACK")
-            if((event.values[0] > 100 && event.values[0] < 150 ) && prevLightValue != BLACK){
+            if((event.values[0] > 50 && event.values[0] < 100 ) && prevLightValue != BLACK){
                 mCallback.update("BLACK");
                 prevLightValue = BLACK;
             }

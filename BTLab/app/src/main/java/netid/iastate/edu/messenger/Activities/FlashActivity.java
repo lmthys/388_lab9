@@ -132,39 +132,48 @@ public class FlashActivity extends AppCompatActivity implements SensorUpdateCall
         // you can retrieve the screen color pattern seen, the character it represents, and therefore
         // the character received to be appended to the messageReceivedTextView
 
+        String prevColor = "";
+
         if (!endOfMessage) {//if the end of the message hasn't yet been detected, then see what color has been sensed from the light sensor
             // - if value = "RED", initialize the messageReceived arrayList and clear the messageReceivedTextView
             if(value.equals("RED")){
                 messageReceived = new ArrayList<String>();
                 messageReceivedTextView.setText("");
+                prevColor = "RED";
+                Toast.makeText(getApplicationContext(), "red", Toast.LENGTH_SHORT).show();
             }
             // - if value = "BLACK", get the current time and store it into rStartTime
             if(value.equals("BLACK")){
                 rStartTime = System.currentTimeMillis();
+                prevColor = "BLACK";
+                Toast.makeText(getApplicationContext(), "black", Toast.LENGTH_SHORT).show();
             }
             // - if value = "WHITE", find the total time that the screen was black, and add FlashModel.DOT, .DASH, or .END_CHARACTER accordingly to messageReceived arrayList
             if(value.equals("WHITE")){
+
                 long time = System.currentTimeMillis() - rStartTime;
-                if(time > 500 && time < 700){
+                Toast.makeText(getApplicationContext(),"time "+time, Toast.LENGTH_SHORT).show();
+                if (time > 500 && time < 700) {
                     messageReceived.add(flashModel.DASH);
-                } else if(time > 200 && time < 400 ){
+                    Toast.makeText(getApplicationContext(),"Dash", Toast.LENGTH_SHORT).show();
+                } else if (time > 200 && time < 450) {
                     messageReceived.add(flashModel.DOT);
-                } else if(time > 800 && time < 1000){
+                    Toast.makeText(getApplicationContext(),"Dot", Toast.LENGTH_SHORT).show();
+                } else if (time > 800 && time < 1000) {
                     messageReceived.add(flashModel.END_CHARACTER);
+                    char y = flashModel.decodeCharacterPattern(messageReceived);
+                    Toast.makeText(getApplicationContext(),y, Toast.LENGTH_SHORT).show();
+                    messageReceivedTextView.append(Character.toString(y));
+
 
                 }
 
 
+
             }
 
         }
 
-        if(messageCounter) {
-            // - when need be, decode the pattern and update the messageReceivedTextView
-            Toast.makeText(this, flashModel.decodeCharacterPattern(messageReceived),  Toast.LENGTH_SHORT);
-            messageReceivedTextView.setText(flashModel.decodeCharacterPattern(messageReceived));
-
-        }
     }
 
     @Override
